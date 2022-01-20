@@ -426,7 +426,7 @@ there.
   width: 200px;
   background-color: #f1f1f1;
   position: fixed;
-  height: 100%;
+  height: 100%; 
   overflow: auto;
 }
 
@@ -450,7 +450,7 @@ there.
   color: white;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1200px) {
   .sidebar {
     width: 100%;
     height: auto;
