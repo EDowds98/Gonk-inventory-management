@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -18,9 +19,12 @@ func FormHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 
 	case "POST":
+
+		r.ParseForm()
 		uname := r.FormValue("uname")
 		pwd := r.FormValue("pwd")
 
+		fmt.Printf(uname + pwd)
 		if uname == "admin" && pwd == "root" {
 			http.Redirect(w, r, "https://www.google.com", http.StatusFound)
 		} else {
