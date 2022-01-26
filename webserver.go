@@ -1,53 +1,50 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"net/http"
-
-	"github.com/gorilla/mux"
 )
-
-func GetIndexHandler(w http.ResponseWriter, r *http.Request) {
-	p := ("./website/index.html")
-	// set header
-	w.Header().Set("Content-type", "text/html")
-	http.ServeFile(w, r, p)
-}
 
 func FormHandler(w http.ResponseWriter, r *http.Request) {
 
 	switch r.Method {
 
 	case "POST":
-
-		r.ParseForm()
 		uname := r.FormValue("uname")
 		pwd := r.FormValue("pwd")
 
-		fmt.Printf(uname + pwd)
 		if uname == "admin" && pwd == "root" {
-			http.Redirect(w, r, "https://www.google.com", http.StatusFound)
+			http.Redirect(w, r, "./website/login-success.html", http.StatusFound)
 		} else {
-			http.Redirect(w, r, "https://wikipedia.com", http.StatusFound)
+			http.Redirect(w, r, "https://www.youtube.com/watch?v=dQw4w9WgXcQ", http.StatusFound)
 		}
 
 	case "GET":
-		p := ("./website/portal.html")
+		p := ("./website/login-success.html")
 		http.ServeFile(w, r, p)
 	}
 }
 
+func FormPresenter(w http.ResponseWriter, r *http.Request) {
+
+	p := ("login-success.html")
+	http.ServeFile(w, r, p)
+}
+
+func IndexHandler(w http.ResponseWriter, r *http.Request) {
+	p := ("index.html")
+	http.ServeFile(w, r, p)
+}
+
 func main() {
 
-	r := mux.NewRouter().StrictSlash(false)
+	http.HandleFunc("/", IndexHandler)
+	http.HandleFunc("/login-success", FormHandler)
+	http.HandleFunc("/portal", FormPresenter)
 
-	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./website/")))
-
-	r.HandleFunc("/", GetIndexHandler).Methods("GET")
-	r.HandleFunc("/portal.html", FormHandler)
-	server := &http.Server{
-		Addr:    ":8080",
-		Handler: r,
+	css := http.FileServer(http.Dir("./website"))
+	http.Handle("/website/", http.StripPrefix("/website/", css))
+	if err := http.ListenAndServe("localhost:8080", nil); err != nil {
+		log.Fatal("ListenAndServe: ", err)
 	}
-	server.ListenAndServe()
 }
