@@ -29,6 +29,8 @@ func FormPresenter(w http.ResponseWriter, r *http.Request) {
 
 	p := ("login-success.html")
 	http.ServeFile(w, r, p)
+
+	log.Println("%s", r.RemoteAddr)
 }
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
