@@ -3,7 +3,17 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 )
+
+func determineListenAddress() (string, error) {
+	port := os.Getenv("PORT")
+	if port == "" {
+		//return "", fmt.Errorf("$PORT not set")
+		port = "9000"
+	}
+	return ":" + port, nil
+}
 
 func FormHandler(w http.ResponseWriter, r *http.Request) {
 
@@ -39,13 +49,18 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
+	addr, err := determineListenAddress()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	http.HandleFunc("/", IndexHandler)
 	http.HandleFunc("/login-success", FormHandler)
 	http.HandleFunc("/portal", FormPresenter)
 
 	css := http.FileServer(http.Dir("./website"))
 	http.Handle("/website/", http.StripPrefix("/website/", css))
-	if err := http.ListenAndServe("localhost:8080", nil); err != nil {
+	if err := http.ListenAndServe(addr, nil); err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
 }
