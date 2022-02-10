@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 )
@@ -33,7 +32,9 @@ func FormPresenter(w http.ResponseWriter, r *http.Request) {
 }
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w)
+	p := ("index.html")
+	http.ServeFile(w, r, p)
+
 }
 
 func main() {
