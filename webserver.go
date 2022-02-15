@@ -1,11 +1,19 @@
+/*
+ * Written by Eric Dowds ed67@hw.ac.uk
+ */
+
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
 )
 
+/* This is needed instead of a static port because heroku
+ * randomises ports when it starts
+ */
 func determineListenAddress() (string, error) {
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -15,6 +23,9 @@ func determineListenAddress() (string, error) {
 	return ":" + port, nil
 }
 
+/* This function reads the form data from the portal login page and
+ * redirects depending on the values
+ */
 func FormHandler(w http.ResponseWriter, r *http.Request) {
 
 	switch r.Method {
@@ -24,29 +35,30 @@ func FormHandler(w http.ResponseWriter, r *http.Request) {
 		pwd := r.FormValue("pwd")
 
 		if uname == "admin" && pwd == "root" {
-			http.Redirect(w, r, "./website/login-success.html", http.StatusFound)
+			fmt.Println("just before redirect")
+			http.Redirect(w, r, "/login-success", http.StatusFound)
 		} else {
 			http.Redirect(w, r, "https://www.youtube.com/watch?v=dQw4w9WgXcQ", http.StatusFound)
 		}
 
 	case "GET":
-		p := ("./website/login-success.html")
+		fmt.Println("GET case")
+		p := "./website/login-success.html"
 		http.ServeFile(w, r, p)
+
 	}
 }
 
 func FormPresenter(w http.ResponseWriter, r *http.Request) {
-
-	p := ("login-success.html")
+	p := ("./website/portal.html")
+	fmt.Println("at formPresenter")
 	http.ServeFile(w, r, p)
 
-	log.Println("%s", r.RemoteAddr)
 }
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	p := ("index.html")
+	p := ("./website/index.html")
 	http.ServeFile(w, r, p)
-
 }
 
 func main() {
@@ -60,8 +72,8 @@ func main() {
 	http.HandleFunc("/login-success", FormHandler)
 	http.HandleFunc("/portal", FormPresenter)
 
-	css := http.FileServer(http.Dir("./website"))
-	http.Handle("/website/", http.StripPrefix("/website/", css))
+	css := http.FileServer(http.Dir("./css"))
+	http.Handle("/css/", http.StripPrefix("/css/", css))
 	if err := http.ListenAndServe(addr, nil); err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
