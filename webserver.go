@@ -49,6 +49,8 @@ func FormHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// simple static handlers go here
+
 func FormPresenter(w http.ResponseWriter, r *http.Request) {
 	p := ("./website/portal.html")
 	fmt.Println("at formPresenter")
@@ -61,6 +63,12 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, p)
 }
 
+//this function I hope will handle data sent from the ESP8266
+
+func ESPHandler(w http.ResponseWriter, r *http.Request) {
+	// TODO
+}
+
 func main() {
 
 	addr, err := determineListenAddress()
@@ -71,6 +79,7 @@ func main() {
 	http.HandleFunc("/", IndexHandler)
 	http.HandleFunc("/login-success", FormHandler)
 	http.HandleFunc("/portal", FormPresenter)
+	http.HandleFunc("/ESP-requests", ESPHandler)
 
 	css := http.FileServer(http.Dir("./css"))
 	http.Handle("/css/", http.StripPrefix("/css/", css))
