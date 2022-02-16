@@ -58,8 +58,18 @@ func FormPresenter(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func AboutHandler(w http.ResponseWriter, r *http.Request) {
+	p := ("./website/about-us.html")
+	http.ServeFile(w, r, p)
+}
+
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	p := ("./website/index.html")
+	http.ServeFile(w, r, p)
+}
+
+func ContactHandler(w http.ResponseWriter, r *http.Request) {
+	p := ("./website/contact-us.html")
 	http.ServeFile(w, r, p)
 }
 
@@ -79,6 +89,9 @@ func main() {
 	http.HandleFunc("/", IndexHandler)
 	http.HandleFunc("/login-success", FormHandler)
 	http.HandleFunc("/portal", FormPresenter)
+	http.HandleFunc("/about-us", AboutHandler)
+	http.HandleFunc("/contact-us", ContactHandler)
+
 	http.HandleFunc("/ESP-requests", ESPHandler)
 
 	css := http.FileServer(http.Dir("./css"))
