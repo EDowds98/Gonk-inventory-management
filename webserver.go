@@ -83,19 +83,8 @@ func ESPHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	r.ParseForm()
-	fmt.Println("request.Form::")
-	for key, value := range r.Form {
-		fmt.Printf("Key:%s, Value:%s\n", key, value)
-	}
-	fmt.Println("\nrequest.PostForm::")
-	for key, value := range r.PostForm {
-		fmt.Printf("Key:%s, Value:%s\n", key, value)
-	}
-
-	fmt.Printf("\nMessage field from ESP:%s\n", r.Form["Message"])
-
-	w.WriteHeader(200)
-	w.Write([]byte("well done!"))
+	message := r.FormValue("Message")
+	fmt.Fprintf(w, "Message from curl: %s\n", message)
 }
 
 func main() {
