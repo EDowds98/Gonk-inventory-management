@@ -16,10 +16,10 @@ void setup()
   void loop()
   {
     HTTPClient http;
-    String postData = "hello from ESP!";
+    String postData = "Message=Hello+from+ESP!";
 
     http.begin(wifiClient, "https://gonk-systems.herokuapp.com/ESP-requests");
-    http.addHeader("Content-Type", "text/plain");
+    http.addHeader("Content-Type", "application/x-www-form-urlencoded");
 
     int httpCode = http.POST(postData);
     String payload = http.getString();

@@ -6,7 +6,6 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -77,9 +76,26 @@ func ContactHandler(w http.ResponseWriter, r *http.Request) {
 //this function I hope will handle data sent from the ESP8266
 
 func ESPHandler(w http.ResponseWriter, r *http.Request) {
-	body, _ := ioutil.ReadAll(r.Body)
-	bodyString := string(body)
-	fmt.Printf("%s", bodyString)
+	headerContentType := r.Header.Get("Content-Type")
+	if headerContentType != "application/x-www-form-urlencoded" {
+		w.WriteHeader(http.StatusUnsupportedMediaType)
+		return
+	}
+
+	r.ParseForm()
+	fmt.Println("request.Form::")
+	for key, value := range r.Form {
+		fmt.Printf("Key:%s, Value:%s\n", key, value)
+	}
+	fmt.Println("\nrequest.PostForm::")
+	for key, value := range r.PostForm {
+		fmt.Printf("Key:%s, Value:%s\n", key, value)
+	}
+
+	fmt.Printf("\nMessage field from ESP:%s\n", r.Form["Message"])
+
+	w.WriteHeader(200)
+
 }
 
 func main() {
