@@ -16,9 +16,9 @@ void setup()
   void loop()
   {
     HTTPClient http;
-    String postData = "hello from ESP";
+    String postData = "hello from ESP!";
 
-    http.begin(wifiClient, "https://hidden-beyond-76584.herokuapp.com/website/");
+    http.begin(wifiClient, "https://gonk-systems.herokuapp.com/ESP-requests");
     http.addHeader("Content-Type", "text/plain");
 
     int httpCode = http.POST(postData);

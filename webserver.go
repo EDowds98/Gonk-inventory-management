@@ -6,6 +6,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -76,7 +77,9 @@ func ContactHandler(w http.ResponseWriter, r *http.Request) {
 //this function I hope will handle data sent from the ESP8266
 
 func ESPHandler(w http.ResponseWriter, r *http.Request) {
-	// TODO
+	body, _ := ioutil.ReadAll(r.Body)
+	bodyString := string(body)
+	fmt.Printf("%s", bodyString)
 }
 
 func main() {
