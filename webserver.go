@@ -95,7 +95,7 @@ func ESPHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("\nMessage field from ESP:%s\n", r.Form["Message"])
 
 	w.WriteHeader(200)
-
+	w.Write([]byte("well done!"))
 }
 
 func main() {
