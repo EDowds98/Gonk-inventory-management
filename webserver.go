@@ -85,6 +85,7 @@ func ESPHandler(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	message := r.FormValue("Message")
 	fmt.Fprintf(w, "Message from curl: %s\n", message)
+
 }
 
 func main() {
