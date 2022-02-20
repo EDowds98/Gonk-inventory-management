@@ -11,6 +11,12 @@ import (
 	"os"
 )
 
+/* This is our global variable to save our POST data from the
+ * ESP8266
+ */
+
+var message string
+
 /* This is needed instead of a static port because heroku
  * randomises ports when it starts
  */
@@ -83,9 +89,10 @@ func ESPHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	r.ParseForm()
-	message := r.FormValue("Message")
+	message = r.FormValue("Message")
 	fmt.Fprintf(w, "Message from curl: %s\n", message)
 	w.WriteHeader(http.StatusOK)
+
 }
 
 func main() {
