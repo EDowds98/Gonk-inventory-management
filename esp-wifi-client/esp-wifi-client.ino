@@ -6,44 +6,46 @@
 
 WiFiClient wifiClient;
 
-void setup()
-{
-  Serial.begin(9600);
-  WiFi.begin(SSID, PASS);
-  pinMode(2, OUTPUT);
-}
-
-  void loop()
-  {
-    HTTPClient http;
-    String postData = "Message=Hello+from+ESP!";
-
-    http.begin(wifiClient, "https://gonk-systems.herokuapp.com/ESP-requests");
-    http.addHeader("Content-Type", "application/x-www-form-urlencoded");
-
-    int httpCode = http.POST(postData);
-    String payload = http.getString();
-
-if (httpCode > 0) {
-      // HTTP header has been send and Server response header has been handled
-      Serial.printf("[HTTP] POST... code: %d\n", httpCode);
-
-      // file found at server
-      if (httpCode == HTTP_CODE_OK) {
-        const String& payload = http.getString();
-        Serial.println("received payload:\n<<");
-        Serial.println(payload);
-        Serial.println(">>");
-      }
-    } else {
-      Serial.printf("[HTTP] POST... failed, error: %s\n", http.errorToString(httpCode).c_str());
-    }
-    Serial.println("here1");
-    Serial.println(httpCode);
-    Serial.println("here2");
-    Serial.println(payload);
-
-    http.end();
-
-    delay(5000);
+#include <ESP8266HTTPClient.h>
+#include <ESP8266WiFi.h>
+ 
+void setup() {
+ 
+  Serial.begin(115200);                 //Serial connection
+  WiFi.begin(SSID, PASS);   //WiFi connection
+ 
+  while (WiFi.status() != WL_CONNECTED) {  //Wait for the WiFI connection completion
+ 
+    delay(500);
+    Serial.println("Waiting for connection");
+ 
   }
+ 
+}
+ 
+void loop() {
+ 
+  if (WiFi.status() == WL_CONNECTED) { //Check WiFi connection status
+ 
+    HTTPClient http;    //Declare object of class HTTPClient
+ 
+    http.begin(wifiClient, "http://gonk-systems.herokuapp.com/ESP-requests");      //Specify request destination
+    http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //Specify content-type header
+ 
+    int httpCode = http.POST("Message=hello+there");   //Send the request
+    String payload = http.getString();                  //Get the response payload
+ 
+    Serial.println(httpCode);   //Print HTTP return code
+    Serial.println(payload);    //Print request response payload
+ 
+    http.end();  //Close connection
+ 
+  } else {
+ 
+    Serial.println("Error in WiFi connection");
+ 
+  }
+ 
+  delay(2000);  //Send a request every 30 seconds
+ 
+}
