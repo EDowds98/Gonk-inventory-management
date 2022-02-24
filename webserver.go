@@ -95,6 +95,10 @@ func ESPHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func SendToJS(w http.ResponseWriter, r *http.Request) {
+
+}
+
 func main() {
 
 	addr, err := determineListenAddress()
