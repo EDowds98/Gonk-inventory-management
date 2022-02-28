@@ -1,8 +1,11 @@
 #include <ESP8266HTTPClient.h>
 #include <ESP8266WiFi.h>
+#include <ArduinoJson.h>
 
 #define SSID "DandG-BHSS-2.4G"
 #define PASS "Cookie23again"
+
+#define JSON_BUF_SIZE 256
 
 WiFiClient wifiClient;
 
@@ -28,11 +31,22 @@ void loop() {
   if (WiFi.status() == WL_CONNECTED) { //Check WiFi connection status
  
     HTTPClient http;    //Declare object of class HTTPClient
- 
+
+    StaticJsonBuffer<JSON_BUF_SIZE> jsonbuffer;
+    JsonObject& jsonData = jsonbuffer.createObject();
+
+    jsonData["Module"] = 1;
+    jsonData["Item"] = 2;
+    jsonData["Quantity"] = 3;
+
+    String postData = "";
+
+    jsonData.printTo(postData)
+
     http.begin(wifiClient, "http://gonk-systems.herokuapp.com/ESP-requests");      //Specify request destination
-    http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //Specify content-type header
+    http.addHeader("Content-Type", "application/json");  //Specify content-type header
  
-    int httpCode = http.POST("Message=hello+there");   //Send the request
+    int httpCode = http.POST(postData);   //Send the request
     String payload = http.getString();                  //Get the response payload
  
     Serial.println(httpCode);   //Print HTTP return code
@@ -46,6 +60,6 @@ void loop() {
  
   }
  
-  delay(2000);  //Send a request every 30 seconds
+  delay(2000);  //Send a request every 2 seconds
  
 }
