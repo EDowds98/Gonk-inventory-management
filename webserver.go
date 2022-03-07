@@ -5,6 +5,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -15,7 +16,18 @@ import (
  * ESP8266
  */
 
-var message string
+type message struct {
+	Module   int `json:"Module"`
+	Item     int `json:"Item"`
+	Quantity int `json:"Quantity"`
+}
+
+/*
+ * This is an instance of the struct and we'll fill this with JSON
+ * and send it to the js program on the front end
+ */
+
+var ESPJson message
 
 /* This is needed instead of a static port because heroku
  * randomises ports when it starts
@@ -83,20 +95,27 @@ func ContactHandler(w http.ResponseWriter, r *http.Request) {
 
 func ESPHandler(w http.ResponseWriter, r *http.Request) {
 	headerContentType := r.Header.Get("Content-Type")
-	if headerContentType != "application/x-www-form-urlencoded" {
+	if headerContentType != "application/json" {
 		w.WriteHeader(http.StatusUnsupportedMediaType)
 		return
 	}
 
-	r.ParseForm()
-	message = r.FormValue("Message")
-	fmt.Fprintf(w, "Message from curl: %s\n", message)
-	w.WriteHeader(http.StatusOK)
+	err := json.NewDecoder(r.Body).Decode(&ESPJson)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
 
 }
 
 func SendToJS(w http.ResponseWriter, r *http.Request) {
-
+	userJson, err := json.Marshal(&ESPJson)
+	if err != nil {
+		panic(err)
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	w.Write(userJson)
 }
 
 func main() {
