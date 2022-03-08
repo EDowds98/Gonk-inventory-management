@@ -144,5 +144,5 @@ func main() {
 		log.Fatal("ListenAndServe: ", err)
 	}
 
-	fmt.Println(ESPJson)
+	log.Println(ESPJson)
 }
