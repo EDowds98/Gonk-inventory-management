@@ -17,14 +17,14 @@ import (
  */
 
 type message struct {
-	Module0 []int `json:"0"`
-	Module1 []int `json:"1"`
-	Module2 []int `json:"2"`
-	Module3 []int `json:"3"`
-	Module4 []int `json:"4"`
-	Module5 []int `json:"5"`
-	Module6 []int `json:"6"`
-	Module7 []int `json:"7"`
+	Module0 []bool `json:"0"`
+	Module1 []bool `json:"1"`
+	Module2 []bool `json:"2"`
+	Module3 []bool `json:"3"`
+	Module4 []bool `json:"4"`
+	Module5 []bool `json:"5"`
+	Module6 []bool `json:"6"`
+	Module7 []bool `json:"7"`
 }
 
 /*
