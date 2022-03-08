@@ -111,6 +111,7 @@ func ESPHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	log.Println(ESPJson)
 }
 
 func SendToJS(w http.ResponseWriter, r *http.Request) {
@@ -143,6 +144,4 @@ func main() {
 	if err := http.ListenAndServe(addr, nil); err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
-
-	log.Println(ESPJson)
 }
