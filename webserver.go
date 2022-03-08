@@ -17,9 +17,14 @@ import (
  */
 
 type message struct {
-	Module   int `json:"Module"`
-	Item     int `json:"Item"`
-	Quantity int `json:"Quantity"`
+	Module0 []int `json:"0"`
+	Module1 []int `json:"1"`
+	Module2 []int `json:"2"`
+	Module3 []int `json:"3"`
+	Module4 []int `json:"4"`
+	Module5 []int `json:"5"`
+	Module6 []int `json:"6"`
+	Module7 []int `json:"7"`
 }
 
 /*
@@ -138,4 +143,6 @@ func main() {
 	if err := http.ListenAndServe(addr, nil); err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
+
+	fmt.Println(ESPJson)
 }
