@@ -142,6 +142,10 @@ func main() {
 
 	css := http.FileServer(http.Dir("./css"))
 	http.Handle("/css/", http.StripPrefix("/css/", css))
+
+	js := http.FileServer(http.Dir("./js"))
+	http.Handle("/js/", http.StripPrefix("/js/", js))
+
 	if err := http.ListenAndServe(addr, nil); err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
