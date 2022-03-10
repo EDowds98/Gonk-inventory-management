@@ -4,7 +4,7 @@ function displayESPData() {
     fetch('/SendToJS')
     .then(response => {
         console.log('Response: ', response)
-        response.json()
+        console.log(response.json())
     })
     .then(data => console.log(JSON.stringify(data)));
   
