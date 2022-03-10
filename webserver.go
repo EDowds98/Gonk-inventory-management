@@ -145,6 +145,7 @@ func main() {
 	http.HandleFunc("/contact-us", ContactHandler)
 
 	http.HandleFunc("/ESP-requests", ESPHandler)
+	http.HandleFunc("/SendToJS", SendToJS)
 
 	css := http.FileServer(http.Dir("./css"))
 	http.Handle("/css/", http.StripPrefix("/css/", css))
