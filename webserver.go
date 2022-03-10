@@ -122,6 +122,7 @@ func SendToJS(w http.ResponseWriter, r *http.Request) {
 	log.Println("here2")
 	log.Println(userJson)
 	if err != nil {
+		log.Println("fatal json error!")
 		panic(err)
 	}
 	w.Header().Set("Content-Type", "application/json")
