@@ -112,11 +112,14 @@ func ESPHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	log.Println("here0")
 	log.Println(ESPJson)
 }
 
 func SendToJS(w http.ResponseWriter, r *http.Request) {
+	log.Println("here1")
 	userJson, err := json.Marshal(&ESPJson)
+	log.Println("here2")
 	log.Println(userJson)
 	if err != nil {
 		panic(err)
@@ -124,6 +127,7 @@ func SendToJS(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(userJson)
+	log.Println("here3")
 }
 
 func main() {
