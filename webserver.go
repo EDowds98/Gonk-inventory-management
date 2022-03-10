@@ -18,7 +18,6 @@ import (
 
 type message struct {
 	Shelf   int    `json:"Shelf"`
-	Module0 []bool `json:"0"`
 	Module1 []bool `json:"1"`
 	Module2 []bool `json:"2"`
 	Module3 []bool `json:"3"`
@@ -26,6 +25,7 @@ type message struct {
 	Module5 []bool `json:"5"`
 	Module6 []bool `json:"6"`
 	Module7 []bool `json:"7"`
+	Module8 []bool `json:"8"`
 }
 
 /*
