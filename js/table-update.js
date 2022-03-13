@@ -1,9 +1,5 @@
 "use strict";
 
- //global variables
-let ESPObject;
-const data;
-
 function displayESPData() {
     fetch('/SendToJS')
     .then(response => {
