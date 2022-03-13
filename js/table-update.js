@@ -15,20 +15,11 @@ const dummyData = {
 
 function getESPData() {
     fetch('/SendToJS')
-    .then(response => {
-        console.log('Response: ', response);
-        ESPObject = response.json();
-        console.log("ESPObject: ", ESPObject);
-    }/*)
-    .then(data => {
-        try { 
-            ESPObject = data;
-        } catch(error) {
-            ESPObject = dummyData;
-            console.log("couldn't parse JSON, using dummy data");
-        }
-        console.log("parsed json: ", ESPObject);
-    }*/);
+        .then(function(response) {
+            return response.json();
+        }).then(function(json) {
+            ESPObject = json;
+        });
   
 }
 
