@@ -28,6 +28,11 @@ function updateTable() {
     let table = document.getElementById('mainTable');
     let arrays = Object.values(ESPObject);
 
+    // TESTING ONLY
+    if(arrays[i] === null) {
+        arrays = Object.values(dummyData)
+    }
+    
     for(let i = 0; i < arrays.length; i++) {
         let innerArrayLength = arrays[i].length;
         for(let j = 0; j < innerArrayLength; j++) {
