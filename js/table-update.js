@@ -38,7 +38,7 @@ function updateTable() {
     for(let i = 0; i < arrays.length; i++) {
         let innerArrayLength = arrays[i].length;
         for(let j = 0; j < innerArrayLength; j++) {
-            table.rows[i+1].cells[j+1].innerHTML = "hello" /*i[j]*/;
+            table.rows[i].cells[j].innerHTML = "hello" /*i[j]*/;
         }
     }
 }
