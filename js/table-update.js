@@ -15,12 +15,12 @@ const dummyData = {
 
 function getESPData() {
     fetch('/SendToJS')
-        .then(function(response) {
+        .then(function (response) {
             return response.json();
-        }).then(function(json) {
+        }).then(function (json) {
             ESPObject = json;
         });
-  
+
 }
 
 function updateTable() {
@@ -29,23 +29,25 @@ function updateTable() {
     let arrays = Object.values(ESPObject);
 
     // TESTING ONLY
-    if(arrays[i] === null) {
-        arrays = Object.values(dummyData)
-    }
-    
-    for(let i = 0; i < arrays.length; i++) {
+  
+        if (arrays.includes(null)) {
+            arrays = Object.values(dummyData)
+        }
+
+
+    for (let i = 0; i < arrays.length; i++) {
         let innerArrayLength = arrays[i].length;
-        for(let j = 0; j < innerArrayLength; j++) {
-            table.rows[i+1].cells[j+1].innerHTML = arrays[i][j];
+        for (let j = 0; j < innerArrayLength; j++) {
+            table.rows[i + 1].cells[j + 1].innerHTML = arrays[i][j];
         }
     }
 }
 
 function main() {
-    setInterval(()=> {
+    setInterval(() => {
         getESPData();
         updateTable();
-    }, 5000)
-  }
-  
+    }, 10000)
+}
+
 main();
