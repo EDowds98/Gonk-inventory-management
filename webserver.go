@@ -129,8 +129,8 @@ func SendToJS(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	//	w.Write(userJson) // TODO: this doesn't work investigate
 
-	//	log.Println("Here is the struct containing shelf data sent to front end as JSON: ")
-	//	log.Println(userJson)
+	log.Println("Here is the struct containing shelf data sent to front end as JSON: ")
+	log.Println(err)
 }
 
 func main() {
