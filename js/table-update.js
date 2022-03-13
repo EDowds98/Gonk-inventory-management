@@ -50,4 +50,4 @@ function main() {
     }, 5000)
   }
   
-main(3000);
+main();

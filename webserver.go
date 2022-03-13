@@ -97,7 +97,7 @@ func ContactHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, p)
 }
 
-//this functionhandles data sent from the ESP8266
+//this function handles data sent from the ESP8266
 
 func ESPHandler(w http.ResponseWriter, r *http.Request) {
 	headerContentType := r.Header.Get("Content-Type")
@@ -118,7 +118,7 @@ func ESPHandler(w http.ResponseWriter, r *http.Request) {
 
 func SendToJS(w http.ResponseWriter, r *http.Request) {
 
-	userJson, err := json.Marshal(&ESPJson)
+	userJson, err := json.Marshal(ESPJson)
 
 	if err != nil {
 		log.Println("fatal json error!")
