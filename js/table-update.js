@@ -18,7 +18,8 @@ function getESPData() {
     .then(response => {
         console.log('Response: ', response);
         console.log(response.json());
-    })
+        ESPObject = response.json;
+    }/*)
     .then(data => {
         try { 
             ESPObject = data;
@@ -27,7 +28,7 @@ function getESPData() {
             console.log("couldn't parse JSON, using dummy data");
         }
         console.log("parsed json: ", ESPObject);
-    });
+    }*/);
   
 }
 
