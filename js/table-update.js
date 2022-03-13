@@ -16,24 +16,24 @@ const dummyData = {
 function getESPData() {
     fetch('/SendToJS')
     .then(response => {
-        console.log('Response: ', response)
-        console.log(response.json())
+        console.log('Response: ', response);
+        console.log(response.json());
     })
     .then(data => {
         try {
-            ESPObject = JSON.parse(data)
+            ESPObject = JSON.parse(data);
         } catch(error) {
             ESPObject = dummyData;
-            console.log("couldn't parse JSON, using dummy data")
+            console.log("couldn't parse JSON, using dummy data");
         }
-        console.log("parsed json: ", ESPObject)
+        console.log("parsed json: ", ESPObject);
     });
   
 }
 
 function updateTable() {
-    let table = document.getElementById('mainTable')
-    let arrays = Object.values(ESPObject)
+    let table = document.getElementById('mainTable');
+    let arrays = Object.values(ESPObject);
 
     for(let i = 0; i < arrays.length; i++) {
         let innerArrayLength = arrays[i].length;
@@ -50,4 +50,4 @@ function main() {
     }, 5000)
   }
   
-main(3000)
+main(3000);
