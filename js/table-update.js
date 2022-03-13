@@ -20,12 +20,12 @@ function getESPData() {
         console.log(response.json());
     })
     .then(data => {
-        try {
+       /* try { */
             ESPObject = JSON.parse(data);
-        } catch(error) {
+      /*  } catch(error) {
             ESPObject = dummyData;
             console.log("couldn't parse JSON, using dummy data");
-        }
+        } */
         console.log("parsed json: ", ESPObject);
     });
   
