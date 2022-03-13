@@ -12,7 +12,8 @@ const dummyData = {
     Module7: [false, false, false, false, false, false, false, false],
     Module8: [false, false, false, false, false, false, false, false]
 }
-function displayESPData() {
+
+function getESPData() {
     fetch('/SendToJS')
     .then(response => {
         console.log('Response: ', response)
@@ -29,5 +30,23 @@ function displayESPData() {
   
 }
 
-displayESPData();
+function updateTable() {
+    let table = document.getElementById('mainTable')
+    let arrays = Object.values(ESPObject)
 
+    for(let i = 0; i < arrays.length; i++) {
+        let innerArrayLength = arrays[i].length;
+        for(let j = 0; val < innerArrayLength; j++) {
+            table.rows[i+1].cells[j+1].innerHTML = i[j];
+        }
+    }
+}
+
+function main() {
+    setInterval(()=> {
+        getESPData();
+        updateTable();
+    }, 5000)
+  }
+  
+main(3000)
