@@ -33,6 +33,7 @@ function getESPData() {
 }
 
 function updateTable() {
+    console.log("ESPObject: ", ESPObject)
     let table = document.getElementById('mainTable');
     let arrays = Object.values(ESPObject);
 
