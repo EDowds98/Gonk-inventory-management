@@ -118,7 +118,7 @@ func ESPHandler(w http.ResponseWriter, r *http.Request) {
 
 func SendToJS(w http.ResponseWriter, r *http.Request) {
 
-	userJson, err := json.Marshal(ESPJson)
+	err := json.NewEncoder(w).Encode(&ESPJson)
 
 	if err != nil {
 		log.Println("fatal json error!")
@@ -127,10 +127,10 @@ func SendToJS(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	w.Write(userJson) // TODO: this doesn't work investigate
+	//	w.Write(userJson) // TODO: this doesn't work investigate
 
-	log.Println("Here is the struct containing shelf data sent to front end as JSON: ")
-	log.Println(userJson)
+	//	log.Println("Here is the struct containing shelf data sent to front end as JSON: ")
+	//	log.Println(userJson)
 }
 
 func main() {
