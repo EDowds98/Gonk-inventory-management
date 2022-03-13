@@ -117,7 +117,7 @@ func ESPHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SendToJS(w http.ResponseWriter, r *http.Request) {
-	log.Println("here1")
+
 	userJson, err := json.Marshal(&ESPJson)
 
 	if err != nil {
