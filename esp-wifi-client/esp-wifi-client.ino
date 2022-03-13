@@ -3,14 +3,14 @@
 #include <ESP8266WiFi.h>
 #include <ArduinoJson.h>
 
-//#define SSID "DandG-BHSS-2.4G"
-//#define PASS "Cookie23again"
+#define SSID "DandG-BHSS-2.4G"
+#define PASS "Cookie23again"
 
 //#define SSID "Starlight"
 //#define PASS "Omicron2311"
 
-#define SSID "Aidan"
-#define PASS "Flopster"
+//#define SSID "Aidan"
+//#define PASS "Flopster"
 
 
 //state variables

@@ -1,12 +1,19 @@
 "use strict";
 
+ //global variables
+let ESPObject;
+const data;
+
 function displayESPData() {
     fetch('/SendToJS')
     .then(response => {
         console.log('Response: ', response)
         console.log(response.json())
     })
-    .then(data => console.log(JSON.stringify(data)));
+    .then(data => {
+        ESPObject = JSON.parse(data)
+        console.log("parsed json: ", ESPObject)
+    });
   
 }
 
