@@ -17,8 +17,8 @@ function getESPData() {
     fetch('/SendToJS')
     .then(response => {
         console.log('Response: ', response);
-        console.log(response.json());
         ESPObject = response.json();
+        console.log("ESPObject: ", ESPObject);
     }/*)
     .then(data => {
         try { 
