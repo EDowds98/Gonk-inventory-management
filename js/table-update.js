@@ -1,5 +1,6 @@
 "use strict";
 
+let ESPObject;
 // dummy data because no testbench
 const dummyData = {
     Module1: [false, false, false, false, false, false, false, false],
