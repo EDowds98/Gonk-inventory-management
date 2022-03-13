@@ -12,7 +12,8 @@ import (
 	"os"
 )
 
-/* This is our global variable to save our POST data from the
+/*
+ * This is our global variable to save our POST data from the
  * ESP8266
  */
 
@@ -41,7 +42,6 @@ var ESPJson message
 func determineListenAddress() (string, error) {
 	port := os.Getenv("PORT")
 	if port == "" {
-		//return "", fmt.Errorf("$PORT not set")
 		port = "9000"
 	}
 	return ":" + port, nil
@@ -97,7 +97,7 @@ func ContactHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, p)
 }
 
-//this function I hope will handle data sent from the ESP8266
+//this functionhandles data sent from the ESP8266
 
 func ESPHandler(w http.ResponseWriter, r *http.Request) {
 	headerContentType := r.Header.Get("Content-Type")
@@ -112,23 +112,25 @@ func ESPHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	log.Println("here0")
+	log.Println("Here is the data sent from the ESP packaged into a struct: ")
 	log.Println(ESPJson)
 }
 
 func SendToJS(w http.ResponseWriter, r *http.Request) {
 	log.Println("here1")
 	userJson, err := json.Marshal(&ESPJson)
-	log.Println("here2")
-	log.Println(userJson)
+
 	if err != nil {
 		log.Println("fatal json error!")
 		panic(err)
 	}
+
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	w.Write(userJson)
-	log.Println("here3")
+	w.Write(userJson) // TODO: this doesn't work investigate
+
+	log.Println("Here is the struct containing shelf data sent to front end as JSON: ")
+	log.Println(userJson)
 }
 
 func main() {
@@ -138,15 +140,18 @@ func main() {
 		log.Fatal(err)
 	}
 
+	// static page handlers
 	http.HandleFunc("/", IndexHandler)
 	http.HandleFunc("/login-success", FormHandler)
 	http.HandleFunc("/portal", FormPresenter)
 	http.HandleFunc("/about-us", AboutHandler)
 	http.HandleFunc("/contact-us", ContactHandler)
 
+	// getting the data from the ESP onto the site
 	http.HandleFunc("/ESP-requests", ESPHandler)
 	http.HandleFunc("/SendToJS", SendToJS)
 
+	// static fileservers for js and css
 	css := http.FileServer(http.Dir("./css"))
 	http.Handle("/css/", http.StripPrefix("/css/", css))
 
