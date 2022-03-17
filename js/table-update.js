@@ -26,7 +26,7 @@ function getESPData() {
 function updateTable() {
     console.log("ESPObject: ", ESPObject)
     let table = document.getElementById('mainTable');
-    let arrays = Object.values(ESPObject);
+    let arrays = Object.values(ESPObject);  // turn JSON object into 2D array
 
     // TESTING ONLY
   
@@ -35,6 +35,7 @@ function updateTable() {
         }
 
 
+    // iterate over 2D array and fill html table with the values
     for (let i = 0; i < arrays.length; i++) {
         let innerArrayLength = arrays[i].length;
         for (let j = 0; j < innerArrayLength; j++) {
@@ -51,7 +52,7 @@ function main() {
     setInterval(() => {
         getESPData();
         updateTable();
-    }, 10000)
+    }, 3000)
 }
 
 main();

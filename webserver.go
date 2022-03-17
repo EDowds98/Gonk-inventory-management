@@ -97,6 +97,11 @@ func ContactHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, p)
 }
 
+func OurTechHandler(w http.ResponseWriter, r *http.Request) {
+	p := ("./website/our-tech.html")
+	http.ServeFile(w, r, p)
+}
+
 //this function handles data sent from the ESP8266
 
 func ESPHandler(w http.ResponseWriter, r *http.Request) {
@@ -142,17 +147,21 @@ func main() {
 	http.HandleFunc("/portal", FormPresenter)
 	http.HandleFunc("/about-us", AboutHandler)
 	http.HandleFunc("/contact-us", ContactHandler)
+	http.HandleFunc("/our-tech", OurTechHandler)
 
 	// getting the data from the ESP onto the site
 	http.HandleFunc("/ESP-requests", ESPHandler)
 	http.HandleFunc("/SendToJS", SendToJS)
 
-	// static fileservers for js and css
+	// static fileservers for js and css and images
 	css := http.FileServer(http.Dir("./css"))
 	http.Handle("/css/", http.StripPrefix("/css/", css))
 
 	js := http.FileServer(http.Dir("./js"))
 	http.Handle("/js/", http.StripPrefix("/js/", js))
+
+	images := http.FileServer(http.Dir("./images"))
+	http.Handle("/images/", http.StripPrefix("/images/", images))
 
 	if err := http.ListenAndServe(addr, nil); err != nil {
 		log.Fatal("ListenAndServe: ", err)
