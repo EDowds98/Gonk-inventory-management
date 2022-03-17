@@ -7,6 +7,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -35,6 +36,9 @@ type message struct {
  */
 
 var ESPJson message
+
+// global variable needed to declare template variable
+var tmpl *template.Template
 
 /* This is needed instead of a static port because heroku
  * randomises ports when it starts
@@ -67,8 +71,10 @@ func FormHandler(w http.ResponseWriter, r *http.Request) {
 
 	case "GET":
 		fmt.Println("GET case")
-		p := "./website/login-success.html"
-		http.ServeFile(w, r, p)
+		err := tmpl.Execute(w, LoginContent)
+		if err != nil {
+			log.Fatalf("templating failed in FormHandler method: %v", err)
+		}
 
 	}
 }
@@ -76,30 +82,38 @@ func FormHandler(w http.ResponseWriter, r *http.Request) {
 // simple static handlers go here
 
 func FormPresenter(w http.ResponseWriter, r *http.Request) {
-	p := ("./website/portal.html")
-	fmt.Println("at formPresenter")
-	http.ServeFile(w, r, p)
-
+	err := tmpl.Execute(w, PortalContent)
+	if err != nil {
+		log.Fatalf("templating brokennnn: %v", err)
+	}
 }
 
 func AboutHandler(w http.ResponseWriter, r *http.Request) {
-	p := ("./website/about-us.html")
-	http.ServeFile(w, r, p)
+	err := tmpl.Execute(w, AboutUsContent)
+	if err != nil {
+		log.Fatalf("templating brokennnn: %v", err)
+	}
 }
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	p := ("./website/index.html")
-	http.ServeFile(w, r, p)
+	err := tmpl.Execute(w, IndexContent)
+	if err != nil {
+		log.Fatalf("templating brokennnn: %v", err)
+	}
 }
 
 func ContactHandler(w http.ResponseWriter, r *http.Request) {
-	p := ("./website/contact-us.html")
-	http.ServeFile(w, r, p)
+	err := tmpl.Execute(w, ContactContent)
+	if err != nil {
+		log.Fatalf("templating brokennnn: %v", err)
+	}
 }
 
 func OurTechHandler(w http.ResponseWriter, r *http.Request) {
-	p := ("./website/our-tech.html")
-	http.ServeFile(w, r, p)
+	err := tmpl.Execute(w, OurTechContent)
+	if err != nil {
+		log.Fatalf("templating brokennnn: %v", err)
+	}
 }
 
 //this function handles data sent from the ESP8266
@@ -141,6 +155,10 @@ func main() {
 		log.Fatal(err)
 	}
 
+	tmpl, err = template.ParseFiles("./website/template.html")
+	if err != nil {
+		log.Fatalf("bizarre templating error: %v: ", err)
+	}
 	// static page handlers
 	http.HandleFunc("/", IndexHandler)
 	http.HandleFunc("/login-success", FormHandler)
