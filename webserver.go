@@ -148,11 +148,6 @@ func SendToJS(w http.ResponseWriter, r *http.Request) {
 	//	w.Write(userJson) // TODO: this doesn't work investigate
 }
 
-//Stress test handler
-
-func StressTest(w http.ResponseWriter, r *http.Request) {
-	http.FileServer(http.Dir("/test"))
-}
 func main() {
 
 	addr, err := determineListenAddress()
@@ -185,9 +180,6 @@ func main() {
 
 	images := http.FileServer(http.Dir("./images"))
 	http.Handle("/images/", http.StripPrefix("/images/", images))
-
-	//stress testing
-	http.HandleFunc("/loaderio-96d35e958c96e8d374c95add4b6c8744.txt", StressTest)
 
 	if err := http.ListenAndServe(addr, nil); err != nil {
 		log.Fatal("ListenAndServe: ", err)
