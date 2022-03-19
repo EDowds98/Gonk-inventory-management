@@ -4,6 +4,7 @@ import "html/template"
 
 type content struct {
 	HtmlToInsert template.HTML
+	Script       template.HTML
 }
 
 var IndexContent = content{
@@ -11,6 +12,7 @@ var IndexContent = content{
 	template.HTML(`<div class="one-half column offset-by-one" style="margin-top: 25%; overflow: hidden;">
 	<h1>Forget Everything You Think You Know About Inventory Management.</h1>
 	<p>Welcome to Shelf 2.0! Gonk makes inventory management simple. Please browse our website for more information.</p>`),
+	template.HTML(``),
 }
 
 var OurTechContent = content{
@@ -30,6 +32,7 @@ var OurTechContent = content{
 		Why settle for less?
 	</p>
   </div>`),
+	template.HTML(``),
 }
 
 var PortalContent = content{
@@ -43,6 +46,7 @@ var PortalContent = content{
 	  <input type="submit" value="Log in">
 	</form>
   </div>`),
+	template.HTML(``),
 }
 
 var ContactContent = content{
@@ -56,6 +60,7 @@ var ContactContent = content{
    <br>
    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2236.204155209582!2d-3.3238597838000583!3d55.91116038059597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4887c504db3d66d5%3A0x93f0cbd68f093d76!2sGRID%20at%20Heriot-Watt!5e0!3m2!1sen!2suk!4v1643294350670!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" style="border-style: solid; border-color: black;"></iframe>
   </div>`),
+	template.HTML(``),
 }
 
 var LoginContent = content{
@@ -162,6 +167,7 @@ var LoginContent = content{
 
   </table> 
 `),
+	template.HTML(`<script src="js/table-update.js" type="text/javascript"></script>`),
 }
 
 var AboutUsContent = content{
@@ -175,4 +181,5 @@ var AboutUsContent = content{
 	</p>
 	<p><i>"Counts things, avoids people."</i></p>
   </div>`),
+	template.HTML(``),
 }
