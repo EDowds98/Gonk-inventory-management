@@ -8,4 +8,4 @@ webserver
 *.json
 *.bin
 *.ld
-README.md
+*.ino
