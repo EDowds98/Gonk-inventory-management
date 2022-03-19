@@ -7,9 +7,9 @@ I'm looking forward to improving upon it and using it as a base to learn more ab
 
 ## Roadmap
 There's loads of things I still want to do with this app:
-    * Unit-testing! should have started with this but I had to prioritise speed this time
-    * Rendering pages server side using a templating engine - far too much repeating code in html
-    * A database to store accounts
-    * Secure authentication
+* Unit-testing! should have started with this but I had to prioritise speed this time
+* Rendering pages server side using a templating engine - far too much repeating code in html
+* A database to store accounts
+* Secure authentication
 
 
