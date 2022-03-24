@@ -484,10 +484,11 @@ there.
 /* from stack overflow */
 
 @keyframes flickerAnimation {
-  0%   { opacity:0; }
-  20%  { opacity: 0.1;}
+  0%   { opacity:0.05; }
+  25%  { opacity: 0.1;}
   50%  { opacity:0.2;}
-  100% { opacity:0.3; }
+  75% { opacity:0.1;}
+  100% {opacity:0.05;}
 }
 @-o-keyframes flickerAnimation{
   0%   { opacity:1; }

@@ -69,28 +69,17 @@ var LoginContent = content{
 	template.HTML(`<table id="mainTable">
 	<tr>
 	  <th></th>
-	  <th>Module 1</th>
-	  <th>Module 2</th>
-	  <th>Module 3</th>
-	  <th>Module 4</th>
-	  <th>Module 5</th>
-	  <th>Module 6</th>
-	  <th>Module 7</th>
-	  <th>Module 8</th>
+	  <th>Item 1</th>
+	  <th>Item 2</th>
+	  <th>Item 3</th>
+	  <th>Item 4</th>
+	  <th>Item 5</th>
+	  <th>Item 6</th>
+	  <th>Item 7</th>
+	  <th>Item 8</th>
 	</tr>
 	<tr>
-	  <td>Item 1</td>
-	  <td></td>
-	  <td></td>
-	  <td></td>
-	  <td></td>
-	  <td></td>
-	  <td></td>
-	  <td></td>
-	  <td></td>
-	</tr>
-	<tr>
-	  <td>Item 2</td>
+	  <td>Module 1</td>
 	  <td></td>
 	  <td></td>
 	  <td></td>
@@ -101,7 +90,7 @@ var LoginContent = content{
 	  <td></td>
 	</tr>
 	<tr>
-	  <td>Item 3</td>
+	  <td>Module 2</td>
 	  <td></td>
 	  <td></td>
 	  <td></td>
@@ -112,7 +101,7 @@ var LoginContent = content{
 	  <td></td>
 	</tr>
 	<tr>
-	  <td>Item 4</td>
+	  <td>Module 3</td>
 	  <td></td>
 	  <td></td>
 	  <td></td>
@@ -123,7 +112,7 @@ var LoginContent = content{
 	  <td></td>
 	</tr>
 	<tr>
-	  <td>Item 5</td>
+	  <td>Module 4</td>
 	  <td></td>
 	  <td></td>
 	  <td></td>
@@ -134,18 +123,7 @@ var LoginContent = content{
 	  <td></td>
 	</tr>
 	<tr>
-	<td>Item 6</td>
-	<td></td>
-	<td></td>
-	<td></td>
-	<td></td>
-	<td></td>
-	<td></td>
-	<td></td>
-	<td></td>
-	</tr>
-	<tr>
-	  <td>Item 7</td>
+	  <td>Module 5</td>
 	  <td></td>
 	  <td></td>
 	  <td></td>
@@ -156,7 +134,29 @@ var LoginContent = content{
 	  <td></td>
 	</tr>
 	<tr>
-	  <td>Item 8</td>
+	<td>Module 6</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	</tr>
+	<tr>
+	  <td>Module 7</td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	</tr>
+	<tr>
+	  <td>Module 8</td>
 	  <td></td>
 	  <td></td>
 	  <td></td>
@@ -200,7 +200,7 @@ var AboutUsContent = content{
 	  <div class="slide">
 		<img src="../images/team1.jpg" alt="">
 	  </div>
-	</div>
+	</div2
   </div>
 	</section>
 	<p><i>"Counts things, avoids people."</i></p>
