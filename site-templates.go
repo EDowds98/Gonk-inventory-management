@@ -192,18 +192,32 @@ var AboutUsContent = content{
 	</p>
 	</section>
 	
-	<div id="slideshow-example" data-component="slideshow">
-	<div role="list">
-	  <div class="slide">
-		<img src="../images/team1.jpg" alt="">
+	<!-- Slideshow container -->
+	<div class="slideshow-container">
+	
+	  <!-- Full-width images with number and caption text -->
+	  <div class="mySlides fade">
+		<div class="numbertext">1 / 2</div>
+		<img src="../images/team1.jpg" style="width:100%">
 	  </div>
-	  <div class="slide">
-		<img src="../images/team1.jpg" alt="">
+	
+	  <div class="mySlides fade">
+		<div class="numbertext">2 / 3</div>
+		<img src="../images/team2.jpg" style="width:100%">
 	  </div>
-	</div2
-  </div>
-	</section>
+	
+	  <!-- Next and previous buttons -->
+	  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+	  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+	</div>
+	<br>
+	
+	<!-- The dots/circles -->
+	<div style="text-align:center">
+	  <span class="dot" onclick="currentSlide(1)"></span>
+	  <span class="dot" onclick="currentSlide(2)"></span>
+	</div> 
 	<p><i>"Counts things, avoids people."</i></p>
   </div>`),
-	template.HTML(`<script src="js/slideshow.js" type="text/javascript"></script>`),
+	template.HTML(`<script src="js/slideshow.js" type="text/javascript" defer></script>`),
 }
