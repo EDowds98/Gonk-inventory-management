@@ -470,3 +470,48 @@ there.
     float: none;
   }
 }
+
+/* from freecodecamp */
+[data-component="slideshow"] .slide {
+  display: none;
+}
+
+[data-component="slideshow"] .slide.active {
+  display: block;
+}
+
+/* for the homepage icon */
+/* from stack overflow */
+
+@keyframes flickerAnimation {
+  0%   { opacity:0; }
+  20%  { opacity: 0.1;}
+  50%  { opacity:0.2;}
+  100% { opacity:0.3; }
+}
+@-o-keyframes flickerAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+@-moz-keyframes flickerAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+@-webkit-keyframes flickerAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+#homepage-logo {
+  opacity: 0.1;
+  float: right;
+  margin-top: 10%;
+  margin-right: 10%;
+  -webkit-animation: flickerAnimation 1s infinite;
+  -moz-animation: flickerAnimation 1s infinite;
+  -o-animation: flickerAnimation 1s infinite;
+   animation: flickerAnimation 1s infinite;
+   animation-duration: 20s;
+}

@@ -9,9 +9,11 @@ type content struct {
 
 var IndexContent = content{
 
-	template.HTML(`<div class="one-half column offset-by-one" style="margin-top: 25%; overflow: hidden;">
-	<h1>Forget Everything You Think You Know About Inventory Management.</h1>
-	<p>Welcome to Shelf 2.0! Gonk makes inventory management simple. Please browse our website for more information.</p>`),
+	template.HTML(`
+	<div class="one-half column offset-by-one" style="margin-top: 25%; overflow: hidden;">
+		<h1>Forget Everything You Think You Know About Inventory Management.</h1>
+		<p>Welcome to Shelf 2.0! Gonk makes inventory management simple. Please browse our website for more information.</p>
+		</div>`),
 	template.HTML(``),
 }
 
@@ -171,15 +173,37 @@ var LoginContent = content{
 }
 
 var AboutUsContent = content{
-	template.HTML(`      <div class="one-half column offset-by-one" style="margin-top: 25%; overflow: hidden;">
+	template.HTML(`      <div class="two-thirds column offset-by-one" style="margin-top: 25%; overflow: hidden;">
 	<h2>Our Story.</h2>
-	<p>From humble beginnings to a Fortune 500 company, we have become
+	<section>
+	<p>
+		From humble beginnings to a Fortune 500 company, we have become
 		synonymous with innovating in the Shelf 2.0 space. Every day our Imagineers show up
 		at 2pm and work non-stop until 4pm for our customers. We're not just
 		an automated inventory tracking solutions company; we're an 
 		automated inventory tracking solutions company that cares.
 	</p>
+	</section>
+
+	<section>
+	<p>
+		At Gonk we believe in the turtleneck as a conduit of innovation. Please enjoy
+		photos of our Imagineers brainstorming the future of shelving.
+	</p>
+	</section>
+	
+	<div id="slideshow-example" data-component="slideshow">
+	<div role="list">
+	  <div class="slide">
+		<img src="../images/team1.jpg" alt="">
+	  </div>
+	  <div class="slide">
+		<img src="../images/team1.jpg" alt="">
+	  </div>
+	</div>
+  </div>
+	</section>
 	<p><i>"Counts things, avoids people."</i></p>
   </div>`),
-	template.HTML(``),
+	template.HTML(`<script src="js/slideshow.js" type="text/javascript"></script>`),
 }
