@@ -476,9 +476,11 @@ there.
   div.content {margin-left: 0;}
 
   #homepage-logo {
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    padding-left: 10%;
+    width: 50%;
+    height: 55%;
+    padding-left: 25%;
   }
 }
 
