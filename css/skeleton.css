@@ -442,16 +442,29 @@ there.
 }
 
 /* Active/current link */
-.sidebar a.active {
-  background-color: #ecddbe;
-  color: #222222;
-}
 
-/* Links on mouse-over */
-.sidebar a:hover:not(.active) {
-  background-color: #ECDDBE;
-  color: #222222;
-}
+ /*Links on mouse-over */
+ a.home:hover {
+   background-color: #D7B418;
+ }
+ 
+ a.about-us:hover {
+   background-color: #9D2719;
+ }
+
+ a.our-tech:hover {
+   background-color: #154084;
+   color: #ECDDBE;
+ }
+
+ a.portal:hover {
+   background-color: #ECDDBE;
+   color: #222222;
+ }
+
+ a.contact-us:hover {
+  background-color: #D7B418;
+ }
 
 @media screen and (max-width: 1200px) {
   .sidebar {
@@ -469,6 +482,12 @@ there.
     text-align: center;
     float: none;
   }
+  
+  #homepage-logo {
+    position: absolute;
+    bottom: 0;
+  }
+
 }
 
 /* Slideshow container */
@@ -569,19 +588,25 @@ there.
   100% {opacity:0.05;}
 }
 @-o-keyframes flickerAnimation{
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
+ 0%   { opacity:0.05; }
+  25%  { opacity: 0.1;}
+  50%  { opacity:0.2;}
+  75% { opacity:0.1;}
+  100% {opacity:0.05;}
 }
 @-moz-keyframes flickerAnimation{
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
+  0%   { opacity:0.05; }
+  25%  { opacity: 0.1;}
+  50%  { opacity:0.2;}
+  75% { opacity:0.1;}
+  100% {opacity:0.05;}
 }
 @-webkit-keyframes flickerAnimation{
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
+  0%   { opacity:0.05; }
+  25%  { opacity: 0.1;}
+  50%  { opacity:0.2;}
+  75% { opacity:0.1;}
+  100% {opacity:0.05;}
 }
 #homepage-logo {
   opacity: 0.1;
@@ -594,3 +619,7 @@ there.
    animation: flickerAnimation 1s infinite;
    animation-duration: 20s;
 }
+
+/*#home {
+  background-color: #D7B418;
+} */
