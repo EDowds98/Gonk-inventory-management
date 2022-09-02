@@ -6,11 +6,12 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"html/template"
 	"log"
 	"net/http"
 	"os"
+	"webserver/auth"
+	"webserver/templates"
 )
 
 /*
@@ -38,7 +39,7 @@ type message struct {
 var ESPJson message
 
 // global variable needed to declare template variable
-var tmpl *template.Template
+var Tmpl *template.Template
 
 /* This is needed instead of a static port because heroku
  * randomises ports when it starts
@@ -51,66 +52,38 @@ func determineListenAddress() (string, error) {
 	return ":" + port, nil
 }
 
-/* This function reads the form data from the portal login page and
- * redirects depending on the values
- */
-func FormHandler(w http.ResponseWriter, r *http.Request) {
-
-	switch r.Method {
-
-	case "POST":
-		uname := r.FormValue("uname")
-		pwd := r.FormValue("pwd")
-
-		if uname == "admin" && pwd == "root" {
-			fmt.Println("just before redirect")
-			http.Redirect(w, r, "/login-success", http.StatusFound)
-		} else {
-			http.Redirect(w, r, "https://www.youtube.com/watch?v=dQw4w9WgXcQ", http.StatusFound)
-		}
-
-	case "GET":
-		fmt.Println("GET case")
-		err := tmpl.Execute(w, LoginContent)
-		if err != nil {
-			log.Fatalf("templating failed in FormHandler method: %v", err)
-		}
-
-	}
-}
-
 // simple static handlers go here
 
 func FormPresenter(w http.ResponseWriter, r *http.Request) {
-	err := tmpl.Execute(w, PortalContent)
+	err := Tmpl.Execute(w, templates.PortalContent)
 	if err != nil {
 		log.Fatalf("templating brokennnn: %v", err)
 	}
 }
 
 func AboutHandler(w http.ResponseWriter, r *http.Request) {
-	err := tmpl.Execute(w, AboutUsContent)
+	err := Tmpl.Execute(w, templates.AboutUsContent)
 	if err != nil {
 		log.Fatalf("templating brokennnn: %v", err)
 	}
 }
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	err := tmpl.Execute(w, IndexContent)
+	err := Tmpl.Execute(w, templates.IndexContent)
 	if err != nil {
 		log.Fatalf("templating brokennnn: %v", err)
 	}
 }
 
 func ContactHandler(w http.ResponseWriter, r *http.Request) {
-	err := tmpl.Execute(w, ContactContent)
+	err := Tmpl.Execute(w, templates.ContactContent)
 	if err != nil {
 		log.Fatalf("templating brokennnn: %v", err)
 	}
 }
 
 func OurTechHandler(w http.ResponseWriter, r *http.Request) {
-	err := tmpl.Execute(w, OurTechContent)
+	err := Tmpl.Execute(w, templates.OurTechContent)
 	if err != nil {
 		log.Fatalf("templating brokennnn: %v", err)
 	}
@@ -155,13 +128,13 @@ func main() {
 		log.Fatal(err)
 	}
 
-	tmpl, err = template.ParseFiles("./website/template.html")
+	Tmpl, err = template.ParseFiles("./website/template.html")
 	if err != nil {
 		log.Fatalf("bizarre templating error: %v: ", err)
 	}
 	// static page handlers
 	http.HandleFunc("/", IndexHandler)
-	http.HandleFunc("/login-success", FormHandler)
+	http.HandleFunc("/login-success", auth.FormHandler)
 	http.HandleFunc("/portal", FormPresenter)
 	http.HandleFunc("/about-us", AboutHandler)
 	http.HandleFunc("/contact-us", ContactHandler)

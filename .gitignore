@@ -9,3 +9,5 @@ webserver
 *.bin
 *.ld
 esp-wifi-client/
+*.env
+*.pem
