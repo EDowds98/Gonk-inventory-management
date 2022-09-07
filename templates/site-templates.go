@@ -40,7 +40,7 @@ var OurTechContent = content{
 var PortalContent = content{
 	template.HTML(`<div class="one-half column" style="margin-top: 25%">
 	<h4>Please log in to view live updates from your Gonk™ system.</h4>
-	<form method="post" action="/login-success">
+	<form method="post" action="/login">
 	  <label for="uname">Username</label><br>
 	  <input type="text" id="uname" name="uname"><br>
 	  <label for="pwd">Password</label><br>

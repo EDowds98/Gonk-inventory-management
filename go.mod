@@ -7,4 +7,4 @@ require (
 	github.com/joho/godotenv v1.4.0
 )
 
-require github.com/gorilla/securecookie v1.1.1 // indirect
+require github.com/gorilla/securecookie v1.1.1

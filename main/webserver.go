@@ -128,14 +128,15 @@ func main() {
 		log.Fatal(err)
 	}
 
-	Tmpl, err = template.ParseFiles("./website/template.html")
+	Tmpl, err = template.ParseFiles("../website/template.html")
 	if err != nil {
 		log.Fatalf("bizarre templating error: %v: ", err)
 	}
 	// static page handlers
 	http.HandleFunc("/", IndexHandler)
-	http.HandleFunc("/login-success", auth.FormHandler)
+	http.HandleFunc("/login", auth.FormHandler)
 	http.HandleFunc("/portal", FormPresenter)
+	http.HandleFunc("/internal", auth.InternalHandler)
 	http.HandleFunc("/about-us", AboutHandler)
 	http.HandleFunc("/contact-us", ContactHandler)
 	http.HandleFunc("/our-tech", OurTechHandler)
@@ -145,13 +146,13 @@ func main() {
 	http.HandleFunc("/SendToJS", SendToJS)
 
 	// static fileservers for js and css and images
-	css := http.FileServer(http.Dir("./css"))
+	css := http.FileServer(http.Dir("../css"))
 	http.Handle("/css/", http.StripPrefix("/css/", css))
 
-	js := http.FileServer(http.Dir("./js"))
+	js := http.FileServer(http.Dir("../js"))
 	http.Handle("/js/", http.StripPrefix("/js/", js))
 
-	images := http.FileServer(http.Dir("./images"))
+	images := http.FileServer(http.Dir("../images"))
 	http.Handle("/images/", http.StripPrefix("/images/", images))
 
 	if err := http.ListenAndServe(addr, nil); err != nil {
