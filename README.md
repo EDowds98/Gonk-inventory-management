@@ -10,6 +10,6 @@ There's loads of things I still want to do with this app:
 * Unit-testing! should have started with this but I had to prioritise speed this time
 * ~~Rendering pages server side using a templating engine - far too much repeating code in html~~ ✅ Done!
 * A database to store accounts
-* Secure authentication
+*~~ Secure authentication ~~ Done! using cookie authentication for now but will explore other options in the future.
 
 

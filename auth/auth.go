@@ -36,7 +36,7 @@ func setSession(userName string, resp http.ResponseWriter) {
 		cookie := &http.Cookie{
 			Name:  "session",
 			Value: encoded,
-			Path:  "/", //come back to this
+			Path:  "/", //not entirely sure why but this works
 		}
 		http.SetCookie(resp, cookie)
 	}
@@ -58,7 +58,7 @@ var tmpl *template.Template
 /* This function reads the form data from the portal login page and
  * redirects depending on the values
  */
-func FormHandler(w http.ResponseWriter, r *http.Request) {
+func FormHandler(resp http.ResponseWriter, req *http.Request) {
 
 	tmpl, _ = template.ParseFiles("../website/template.html")
 	// load env variables (will later be from db)
@@ -67,18 +67,18 @@ func FormHandler(w http.ResponseWriter, r *http.Request) {
 		log.Fatalf("problem with loading environment variables, %s", err)
 	}
 
-	if r.Method == "POST" {
+	if req.Method == "POST" {
 
 		uname := os.Getenv("UNAME")
 		pwd := os.Getenv("PWORD")
 		fmt.Println("In post")
 		redirectTarget := "/portal"
-		if uname == r.FormValue("uname") && pwd == r.FormValue("pwd") {
+		if uname == req.FormValue("uname") && pwd == req.FormValue("pwd") {
 			fmt.Println("just before redirect")
-			setSession(uname, w)
+			setSession(uname, resp)
 			redirectTarget = "/internal"
 		}
-		http.Redirect(w, r, redirectTarget, http.StatusTemporaryRedirect)
+		http.Redirect(resp, req, redirectTarget, http.StatusTemporaryRedirect)
 	}
 
 }
